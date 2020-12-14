@@ -289,6 +289,9 @@ class DataCollectionServer(object):
             return TriggerResponse(success=False, message=msg)
 
     def sync_service_cb(self, req):
+        now = rospy.Time.now()
+        while self.timestamp < now :
+            print 1
         result, msg = self._sync_save()
         if result:
             return TriggerResponse(success=True, message=msg)
